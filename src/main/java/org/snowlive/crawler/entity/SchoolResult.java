@@ -87,4 +87,18 @@ public class SchoolResult {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "SchoolResult{" +
+                "id:" + id +
+                ", rank:" + rank +
+                ", college_id:" + college_id +
+                ", city:'" + city + '\'' +
+                ", subject_a:" + subject_a +
+                ", work_rank:" + work_rank +
+                ", sci:" + sci +
+                ", name:'" + name + '\'' +
+                '}';
+    }
 }

@@ -1,4 +1,4 @@
-package org.snowlive.crawler.app;
+package org.snowlive.crawler.test.app;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;

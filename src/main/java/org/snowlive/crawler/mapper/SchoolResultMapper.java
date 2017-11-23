@@ -1,9 +1,6 @@
 package org.snowlive.crawler.mapper;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.ResultMap;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.snowlive.crawler.entity.SchoolResult;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +10,7 @@ import org.springframework.stereotype.Repository;
  * @auther: 尹振坤
  * @date: 17-11-22
  */
+@Mapper
 @Repository("SchoolResultMapper")
 public interface SchoolResultMapper {
 

@@ -42,4 +42,12 @@ public class Result {
         this.msg = msg;
     }
 
+    @Override
+    public String toString() {
+        return "Result{" +
+                "status:" + status +
+                ", msg:'" + msg + '\'' +
+                ", data:" + data +
+                '}';
+    }
 }

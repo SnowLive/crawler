@@ -1,4 +1,6 @@
-${application.title}
+${application.formatted-version}
 ${AnsiColor.BRIGHT_CYAN}
-
-Snowlive Snowlive Snowlive Snowlive Snowlive
+ ___  _  _  _____  _    _  __    ____  _  _  ____
+/ __)( \( )(  _  )( \/\/ )(  )  (_  _)( \/ )( ___)
+\__ \ )  (  )(_)(  )    (  )(__  _)(_  \  /  )__)
+(___/(_)\_)(_____)(__/\__)(____)(____)  \/  (____)
