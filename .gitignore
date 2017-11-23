@@ -3,4 +3,5 @@ dataFile/
 target/
 ### IntelliJ IDEA ###
 .idea/
+dataFile/readme.md
 
