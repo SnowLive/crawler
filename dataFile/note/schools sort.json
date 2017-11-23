@@ -1,0 +1,246 @@
+{
+  "status": 1,
+  "msg": "success",
+  "data": [
+    {
+      "id": "1",//id
+      "rank": "1",//名次
+      "college_id": "1",//学校id
+      "city": "\u5317\u4eac",//所在地
+      "subject_a": "21",//世界排名前1%学科数
+      "subject_b": "0",
+      "work_rank": "124",//世界排名
+      "sci": "58411",//sci论文
+      "name": "\u5317\u4eac\u5927\u5b66",//院校名称
+      "province_id": "1"
+    },
+    {
+      "id": "2",
+      "rank": "2",
+      "college_id": "6",
+      "city": "\u6d59\u6c5f",
+      "subject_a": "18",
+      "subject_b": "0",
+      "work_rank": "141",
+      "sci": "67328",
+      "name": "\u6d59\u6c5f\u5927\u5b66",
+      "province_id": "12"
+    },
+    {
+      "id": "3",
+      "rank": "3",
+      "college_id": "2",
+      "city": "\u5317\u4eac",
+      "subject_a": "16",
+      "subject_b": "0",
+      "work_rank": "143",
+      "sci": "59057",
+      "name": "\u6e05\u534e\u5927\u5b66",
+      "province_id": "1"
+    },
+    {
+      "id": "4",
+      "rank": "4",
+      "college_id": "3",
+      "city": "\u4e0a\u6d77",
+      "subject_a": "17",
+      "subject_b": "0",
+      "work_rank": "162",
+      "sci": "63343",
+      "name": "\u4e0a\u6d77\u4ea4\u901a\u5927\u5b66",
+      "province_id": "2"
+    },
+    {
+      "id": "5",
+      "rank": "5",
+      "college_id": "4",
+      "city": "\u4e0a\u6d77",
+      "subject_a": "17",
+      "subject_b": "0",
+      "work_rank": "187",
+      "sci": "44218",
+      "name": "\u590d\u65e6\u5927\u5b66",
+      "province_id": "2"
+    },
+    {
+      "id": "6",
+      "rank": "6",
+      "college_id": "14",
+      "city": "\u5b89\u5fbd",
+      "subject_a": "10",
+      "subject_b": "0",
+      "work_rank": "234",
+      "sci": "35402",
+      "name": "\u4e2d\u56fd\u79d1\u5b66\u6280\u672f\u5927\u5b66",
+      "province_id": "13"
+    },
+    {
+      "id": "7",
+      "rank": "7",
+      "college_id": "8",
+      "city": "\u6c5f\u82cf",
+      "subject_a": "16",
+      "subject_b": "0",
+      "work_rank": "240",
+      "sci": "38379",
+      "name": "\u5357\u4eac\u5927\u5b66",
+      "province_id": "11"
+    },
+    {
+      "id": "8",
+      "rank": "8",
+      "college_id": "10",
+      "city": "\u5e7f\u4e1c",
+      "subject_a": "18",
+      "subject_b": "0",
+      "work_rank": "258",
+      "sci": "37986",
+      "name": "\u4e2d\u5c71\u5927\u5b66",
+      "province_id": "20"
+    },
+    {
+      "id": "9",
+      "rank": "9",
+      "college_id": "2051",
+      "city": "\u5317\u4eac",
+      "subject_a": "15",
+      "subject_b": "0",
+      "work_rank": "307",
+      "sci": "44801",
+      "name": "\u4e2d\u56fd\u79d1\u5b66\u9662\u5927\u5b66",
+      "province_id": "1"
+    },
+    {
+      "id": "10",
+      "rank": "10",
+      "college_id": "16",
+      "city": "\u5c71\u4e1c",
+      "subject_a": "16",
+      "subject_b": "0",
+      "work_rank": "348",
+      "sci": "36663",
+      "name": "\u5c71\u4e1c\u5927\u5b66",
+      "province_id": "16"
+    },
+    {
+      "id": "11",
+      "rank": "11",
+      "college_id": "9",
+      "city": "\u5409\u6797",
+      "subject_a": "10",
+      "subject_b": "0",
+      "work_rank": "378",
+      "sci": "33945",
+      "name": "\u5409\u6797\u5927\u5b66",
+      "province_id": "9"
+    },
+    {
+      "id": "12",
+      "rank": "12",
+      "college_id": "13",
+      "city": "\u56db\u5ddd",
+      "subject_a": "14",
+      "subject_b": "0",
+      "work_rank": "379",
+      "sci": "37523",
+      "name": "\u56db\u5ddd\u5927\u5b66",
+      "province_id": "23"
+    },
+    {
+      "id": "13",
+      "rank": "13",
+      "college_id": "12",
+      "city": "\u6e56\u5317",
+      "subject_a": "15",
+      "subject_b": "0",
+      "work_rank": "381",
+      "sci": "36914",
+      "name": "\u534e\u4e2d\u79d1\u6280\u5927\u5b66",
+      "province_id": "18"
+    },
+    {
+      "id": "14",
+      "rank": "14",
+      "college_id": "15",
+      "city": "\u5929\u6d25",
+      "subject_a": "10",
+      "subject_b": "0",
+      "work_rank": "419",
+      "sci": "20347",
+      "name": "\u5357\u5f00\u5927\u5b66",
+      "province_id": "3"
+    },
+    {
+      "id": "15",
+      "rank": "15",
+      "college_id": "5",
+      "city": "\u6e56\u5317",
+      "subject_a": "16",
+      "subject_b": "0",
+      "work_rank": "420",
+      "sci": "27214",
+      "name": "\u6b66\u6c49\u5927\u5b66",
+      "province_id": "18"
+    },
+    {
+      "id": "16",
+      "rank": "16",
+      "college_id": "20",
+      "city": "\u9ed1\u9f99\u6c5f",
+      "subject_a": "8",
+      "subject_b": "0",
+      "work_rank": "435",
+      "sci": "32785",
+      "name": "\u54c8\u5c14\u6ee8\u5de5\u4e1a\u5927\u5b66",
+      "province_id": "10"
+    },
+    {
+      "id": "17",
+      "rank": "17",
+      "college_id": "30",
+      "city": "\u8fbd\u5b81",
+      "subject_a": "8",
+      "subject_b": "0",
+      "work_rank": "459",
+      "sci": "24578",
+      "name": "\u5927\u8fde\u7406\u5de5\u5927\u5b66",
+      "province_id": "8"
+    },
+    {
+      "id": "18",
+      "rank": "18",
+      "college_id": "18",
+      "city": "\u9655\u897f",
+      "subject_a": "12",
+      "subject_b": "0",
+      "work_rank": "470",
+      "sci": "31158",
+      "name": "\u897f\u5b89\u4ea4\u901a\u5927\u5b66",
+      "province_id": "27"
+    },
+    {
+      "id": "19",
+      "rank": "19",
+      "college_id": "31",
+      "city": "\u5317\u4eac",
+      "subject_a": "11",
+      "subject_b": "0",
+      "work_rank": "476",
+      "sci": "19518",
+      "name": "\u5317\u4eac\u534f\u548c\u533b\u5b66\u9662",
+      "province_id": "1"
+    },
+    {
+      "id": "20",
+      "rank": "20",
+      "college_id": "27",
+      "city": "\u5e7f\u4e1c",
+      "subject_a": "7",
+      "subject_b": "0",
+      "work_rank": "496",
+      "sci": "20782",
+      "name": "\u534e\u5357\u7406\u5de5\u5927\u5b66",
+      "province_id": "20"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+## 闲杂文件
+dataFile/
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### IntelliJ IDEA ###
+.idea
+
+

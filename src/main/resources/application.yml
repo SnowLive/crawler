@@ -1,0 +1,14 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: Snowlive-crawler
+    title: Snowlive
+
+#mybatis.config：mybatis-config.xml配置文件的路径
+#mybatis.typeHandlersPackage：扫描typeHandlers的包
+#mybatis.checkConfigLocation：检查配置文件是否存在
+#mybatis.executorType：设置执行模式（SIMPLE, REUSE, BATCH），默认为SIMPLE
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  typeAliasesPackage: tk.mapper.model

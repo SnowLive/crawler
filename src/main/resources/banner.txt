@@ -1,0 +1,4 @@
+${application.title}
+${AnsiColor.BRIGHT_CYAN}
+
+Snowlive Snowlive Snowlive Snowlive Snowlive
