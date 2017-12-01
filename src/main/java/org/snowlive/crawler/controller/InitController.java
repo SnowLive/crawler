@@ -25,7 +25,7 @@ public class InitController {
 
     @GetMapping(value = "/init")
     public String init(){
-        return "init controller";
+        return "f_ck all need u";
     }
 
     @GetMapping(value = "/insertsort")

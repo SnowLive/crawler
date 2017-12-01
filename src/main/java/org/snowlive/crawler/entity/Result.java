@@ -1,5 +1,9 @@
 package org.snowlive.crawler.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,39 +12,19 @@ import java.util.List;
  *
  * @auther: 尹振坤
  * @date: 17-11-22
+ *
+ * 这里采用lombok注解进行getter\setter\constructor实现.
+ * `@Data` 注解实现getter/setter/tostring方法的实现.
+ *
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Result {
 
     private Integer status = 0;
     private String msg = "error";
     private List<SchoolResult> data = new ArrayList<SchoolResult>(20);
-
-    public Result(){}
-
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public List<SchoolResult> getData() {
-        return data;
-    }
-
-    public void setData(List<SchoolResult> data) {
-        this.data = data;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
 
     @Override
     public String toString() {

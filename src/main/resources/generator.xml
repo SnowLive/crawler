@@ -16,7 +16,7 @@
 
         <!-- !!!! Database Configurations !!!! -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/shiro"
+                        connectionURL="jdbc:mysql://localhost:3306/schoolsort"
                         userId="root" password="211314"/>
 
         <javaTypeResolver>
@@ -24,7 +24,7 @@
         </javaTypeResolver>
 
         <!-- !!!! Model Configurations !!!! -->
-        <javaModelGenerator targetPackage="org.snowlive.crawler.model" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="org.snowlive.crawler.model.entity" targetProject="src/main/java">
             <property name="enableSubPackages" value="false"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
@@ -40,11 +40,7 @@
         </javaClientGenerator>
 
         <!-- !!!! Table Configurations !!!! -->
-        <table tableName="roles_permissions" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false"/>
-        <table tableName="user_roles" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false"/>
-        <table tableName="users" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+        <table tableName="school_major" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false"/>
     </context>
 </generatorConfiguration>
