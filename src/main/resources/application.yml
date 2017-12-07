@@ -5,11 +5,13 @@ spring:
     name: Snowlive-crawler
     title: Snowlive
   datasource:
-      name: gaokao
+      name: Snowlive-crawler
       type: com.alibaba.druid.pool.DruidDataSource
-      url: jdbc:mysql://localhost:3306/schoolsort?useUnicode=true&characterEncoding=UTF-8&useSSL=true
       username: root
-      password: 211314
+      url: jdbc:mysql://123.206.94.212:3306/gaokao?useUnicode=true&characterEncoding=UTF-8&useSSL=true
+      password: evil
+#      url: jdbc:mysql://localhost:3306/schoolsort?useUnicode=true&characterEncoding=UTF-8&useSSL=true
+#      password: 211314
       driver-class-name: com.mysql.jdbc.Driver
 
 mybatis:

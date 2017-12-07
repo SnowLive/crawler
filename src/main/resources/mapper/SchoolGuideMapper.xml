@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.snowlive.crawler.mapper.SchoolGuideMapper">
+
+    <insert id="insert" parameterType="org.snowlive.crawler.entity.SchoolGuide">
+        INSERT INTO school_guide (id,school_id,school_guide_id,title,content,type,year,used_guide,state,publish_time,create_time,update_time)
+        VALUES (#{id}, #{schoolId}, #{schoolGuideId},#{title},#{content}, #{type}, #{year},#{usedGuide},#{state},#{publishTime}, NOW(), NOW())
+    </insert>
+    <delete id="deleteAll" >
+        DELETE  FROM school_guide
+    </delete>
+</mapper>
+

@@ -1,9 +1,5 @@
 package org.snowlive.crawler.service;
 
-import org.snowlive.crawler.entity.SchoolMajor;
-
-import java.util.List;
-
 /**
  * Class For:
  *  大学专业设置
@@ -20,10 +16,12 @@ import java.util.List;
  */
 public interface SchoolMajorBiz {
 
-    //1. 获取结果集
-    List<SchoolMajor> getSchoolMajorList();
-    //2.数据添加
-    int insertSchoolMajorList(List<SchoolMajor> schoolMajorList);
+    // save school majorsetting
+    int saveMajorSetting();
+
+    //获取页面
+    String getPage(String url);
+
 
 
 }

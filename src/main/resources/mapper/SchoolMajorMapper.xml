@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.snowlive.crawler.mapper.SchoolMajorMapper">
+
+    <insert id="insert" parameterType="org.snowlive.crawler.entity.SchoolMajor">
+        INSERT INTO school_major (id, school_id,school_major_id,type, year, focus_major, special_major,lab_major,course_major,info,state,create_time,update_time)
+        VALUES (#{id}, #{schoolId},#{schoolMajorId},#{type},#{year}, #{focusMajor},#{specialMajor},#{labMajor},#{courseMajor},#{info},#{state},NOW(),NOW())
+    </insert>
+</mapper>
