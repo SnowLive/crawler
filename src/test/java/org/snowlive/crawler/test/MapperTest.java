@@ -82,7 +82,7 @@ public class MapperTest {
         DataJson<PlanYearJson> planYear = new DataJson<>();
         List<PlanYearJson> planYearList = new ArrayList<>();
         PlanYearJson planYearJson = new PlanYearJson();
-        planYearJson.setYear("2017");
+        planYearJson.setYear(2017);
         planYearJson.setMajor(planMajorJson);
 
         planYearList.add(planYearJson);

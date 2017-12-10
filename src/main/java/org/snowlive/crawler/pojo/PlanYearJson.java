@@ -15,14 +15,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PlanYearJson {
-    private String year;
+    private int year;
     private PlanMajorJson major;
 
     @Override
     public String toString() {
         return "{" +
-                "\"year\":\"" + year + '\"' +
-                ",\" major\":" + major +
+                "\"year\":" + year +
+                ",\"major\":" + major +
                 "}";
     }
 }

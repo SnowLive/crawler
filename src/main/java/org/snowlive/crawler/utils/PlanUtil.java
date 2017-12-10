@@ -4,10 +4,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.junit.jupiter.api.Test;
-import org.snowlive.crawler.pojo.DataJson;
-import org.snowlive.crawler.pojo.PlanJson;
-import org.snowlive.crawler.pojo.PlanMajorJson;
-import org.snowlive.crawler.pojo.PlanUrlInfo;
+import org.snowlive.crawler.pojo.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +17,28 @@ import java.util.List;
  * @date: 17-12-10
  */
 public class PlanUtil {
+    public static final int CURRENT_YEAR = 2017;
+
+    /**
+     * 获取往期招生计划
+     * @param planUrlInfo url链接参数封装类
+     * @return 顶级used封装,格式可参考`dataFile/resultDemo/school-plan.json`文件
+     */
+    public static DataJson<PlanYearJson> getUsedPlan(PlanUrlInfo planUrlInfo) {
+        DataJson<PlanYearJson> dataTop = new DataJson<PlanYearJson>();
+        PlanYearJson yearJson ;
+        List<PlanYearJson> yearJsonList = new ArrayList<>(3);
+        for (int year = 2015; year <= CURRENT_YEAR; year++) {
+            planUrlInfo.setYear(year);
+
+            System.out.println("search year:"+year+" planUrlInfo:"+planUrlInfo);
+            yearJson = new PlanYearJson(year, getMajorJson(planUrlInfo));
+            yearJsonList.add(yearJson);
+        }
+        dataTop.setCount(yearJsonList.size());
+        dataTop.setData(yearJsonList);
+        return dataTop;
+    }
 
     /**
      * get 招生计划major层数据
@@ -45,12 +64,16 @@ public class PlanUtil {
      * @param planUrlInfo
      * @return
      */
-    public static DataJson<PlanJson> getMajorData(PlanUrlInfo planUrlInfo) {
+    private static DataJson<PlanJson> getMajorData(PlanUrlInfo planUrlInfo) {
         DataJson<PlanJson> datajson = new DataJson<>();
 
         List<PlanJson> planList = getPlanList(planUrlInfo);
-
         datajson.setData(planList);
+        if(planList==null){
+            System.out.println("planlist is null");
+            System.exit(0);
+        }
+
         datajson.setCount(planList.size());
         return datajson;
     }
@@ -61,14 +84,15 @@ public class PlanUtil {
      * @param planUrlInfo
      * @return
      */
-    public static List<PlanJson> getPlanList(PlanUrlInfo planUrlInfo) {
+    private static List<PlanJson> getPlanList(PlanUrlInfo planUrlInfo) {
 
         List<PlanJson> planList = new ArrayList<>();
 
         Document doc = JsoupDoubleAntiCrawlerUtil.gethtml(UrlUtil.combinPlanURL(planUrlInfo));
+        System.out.println("getPlanList_url:"+UrlUtil.combinPlanURL(planUrlInfo));
         //1.判断有没有 a.text
         //1.1 存在,获取完成之后,p加一,获取doc.select,
-        while(true){
+        while (true) {
 
             //数据预处理
             Elements planEles = doc.select("div.sco_list tr");//具体数据
@@ -78,19 +102,22 @@ public class PlanUtil {
             //数据获取
             planList.addAll(getPlanJson(planEles));//获取数据
             //判断当前页面是否有a.next,没有就break;,有,就p+=1, 重新请求结果.
-            if(doc.select("a.next").isEmpty()) break;
-            planUrlInfo.setP(planUrlInfo.getP()+1);
+            if (doc.select("a.next").isEmpty()) break;
+            planUrlInfo.setP(planUrlInfo.getP() + 1);
             doc = JsoupDoubleAntiCrawlerUtil.gethtml(UrlUtil.combinPlanURL(planUrlInfo));
         }
+        //充值p
+        planUrlInfo.setP(1);
 
         return planList;
 
     }
 
-    public static List<PlanJson> getPlanJson(Elements planEles) {
+    private static List<PlanJson> getPlanJson(Elements planEles) {
         List<PlanJson> planJsonList = new ArrayList<>(20);
         PlanJson planJson = null;
         Elements planTdEle;
+        String numberTemp = "";
         for (Element planEleAttr : planEles) {
             planTdEle = planEleAttr.select("td");
             planJson = new PlanJson();
@@ -98,20 +125,16 @@ public class PlanUtil {
             planJson.setPlan_type(planTdEle.get(1).ownText());
             planJson.setCollege_system(planTdEle.get(2).ownText());
             planJson.setBatch(planTdEle.get(3).ownText());
-            planJson.setPlan_count(Integer.parseInt(planTdEle.get(4).ownText()));
-            planJson.setCost(Double.parseDouble(planTdEle.get(5).ownText()));
+            numberTemp = planTdEle.get(4).ownText();
+            planJson.setPlan_count(Integer.parseInt(numberTemp.equals("--")?"0":numberTemp));
+            numberTemp = planTdEle.get(5).ownText();
+            planJson.setCost(Double.parseDouble(numberTemp.equals("--")?"0.0":numberTemp));
             planJsonList.add(planJson);
         }
-
-//        planJsonList.forEach(plan -> {
-//            System.out.println(plan);
-//        });
-
         return planJsonList;
     }
 
-//    @Test
-    public void test() {
+    public void testGetPlanJson() {
         Elements planEles = JsoupDoubleAntiCrawlerUtil.getElements("div.sco_list tr", UrlUtil.combinPlanURL(new PlanUrlInfo()));
         planEles.remove(planEles.first());//去表头
         if (planEles.first().select("td").text()
@@ -119,16 +142,20 @@ public class PlanUtil {
         getPlanJson(planEles);
     }
 
-//    @Test
-    public void test1(){
+    public void testgetPlanList() {
         List<PlanJson> dataList = getPlanList(new PlanUrlInfo());
-        dataList.forEach(data->{
+        dataList.forEach(data -> {
             System.out.println(data);
         });
     }
-    @Test
-    public void test2(){
+
+    public void testGetMajorJson() {
         System.out.println(getMajorJson(new PlanUrlInfo()));
+    }
+
+    @Test
+    public void testGetUsedPlan(){
+        System.out.println(getUsedPlan(new PlanUrlInfo()));
     }
 
 
