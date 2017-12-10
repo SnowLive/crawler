@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
  * @date: 17-12-7
  */
 @Mapper
-@Repository()
+@Repository
 public interface TestJsonMapper {
     @Insert("insert into testjson values(#{json})")
     int insert(String json);

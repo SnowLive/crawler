@@ -21,7 +21,7 @@ import java.util.Random;
  * @auther: 尹振坤
  * @date: 17-12-1
  */
-@Service("SchoolMajorBiz")
+@Service
 public class SchoolMajorBizImpl implements SchoolMajorBiz {
 
     private static final String USER_AGENT = "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:56.0) Gecko/20100101 Firefox/56.0";

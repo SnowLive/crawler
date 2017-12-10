@@ -5,7 +5,7 @@ import org.snowlive.crawler.entity.SchoolMajor;
 import org.springframework.stereotype.Repository;
 
 @Mapper
-@Repository("SchoolMajorMapper")
+@Repository
 public interface SchoolMajorMapper {
 
     int insert(SchoolMajor record);

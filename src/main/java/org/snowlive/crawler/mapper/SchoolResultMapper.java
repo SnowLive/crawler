@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
  * @date: 17-11-22
  */
 @Mapper
-@Repository("SchoolResultMapper")
+@Repository
 public interface SchoolResultMapper {
 
     @ResultMap("schoolResult")

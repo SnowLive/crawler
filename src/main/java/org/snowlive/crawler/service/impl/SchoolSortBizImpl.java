@@ -7,7 +7,6 @@ import org.snowlive.crawler.service.SchoolSortBiz;
 import org.snowlive.crawler.utils.MyJsonTools;
 import org.snowlive.crawler.utils.SchoolInfoDownloadUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,11 +19,10 @@ import java.util.List;
  * @auther: 尹振坤
  * @date: 17-11-23
  */
-@Service("SchoolSortBiz")
+@Service
 public class SchoolSortBizImpl implements SchoolSortBiz {
 
     @Autowired
-    @Qualifier("SchoolResultMapper")
     private SchoolResultMapper schoolResultMapper;
 
     @Override

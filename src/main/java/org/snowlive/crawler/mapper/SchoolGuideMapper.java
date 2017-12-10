@@ -5,7 +5,7 @@ import org.snowlive.crawler.entity.SchoolGuide;
 import org.springframework.stereotype.Repository;
 
 @Mapper
-@Repository("SchoolGuideMapper")
+@Repository
 public interface SchoolGuideMapper {
 
     int insert(SchoolGuide record);

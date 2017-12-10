@@ -1,9 +1,10 @@
 package org.snowlive.crawler.controller;
 
 import org.snowlive.crawler.service.SchoolSortBiz;
+import org.snowlive.crawler.utils.JsoupDoubleAntiCrawlerUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +21,6 @@ import java.util.HashMap;
 public class InitController {
 
     @Autowired
-    @Qualifier("SchoolSortBiz")
     private SchoolSortBiz schoolSortBiz;
 
     @GetMapping(value = "/init")
@@ -31,6 +31,11 @@ public class InitController {
     @GetMapping(value = "/insertsort")
     public HashMap<String,Object> insertSortSchools(){
         return schoolSortBiz.addSchoolSortInfo(schoolSortBiz.getListSchoolSortInfo("http://www.gaokaoq.com/rank/moreList?data=1&type=1&p="));
+    }
+    @GetMapping(value="/college/plan/{id}")
+    public String plan(@PathVariable("id")Integer id){
+        String url = "http://www.gaokaoq.com/college/plan/id/"+id+".html";
+        return JsoupDoubleAntiCrawlerUtil.gethtml(url).toString();
     }
 
 

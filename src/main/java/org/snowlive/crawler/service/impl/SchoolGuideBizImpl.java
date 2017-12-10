@@ -109,6 +109,7 @@ public class SchoolGuideBizImpl implements SchoolGuideBiz {
             usedGuideList.add(tempGuide);
         }
         dataJson.setData(usedGuideList);
+        dataJson.setCount(usedGuideList.size());
         return dataJson.toString();
     }
 }
