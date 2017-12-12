@@ -21,17 +21,16 @@ public class PlanUtil {
 
     /**
      * 获取往期招生计划
+     *
      * @param planUrlInfo url链接参数封装类
-     * @return 顶级used封装,格式可参考`dataFile/resultDemo/school-plan.json`文件
+     * @return 顶级used封装, 格式可参考`dataFile/resultDemo/school-plan.json`文件
      */
     public static DataJson<PlanYearJson> getUsedPlan(PlanUrlInfo planUrlInfo) {
         DataJson<PlanYearJson> dataTop = new DataJson<PlanYearJson>();
-        PlanYearJson yearJson ;
+        PlanYearJson yearJson;
         List<PlanYearJson> yearJsonList = new ArrayList<>(3);
-        for (int year = 2015; year <= CURRENT_YEAR; year++) {
+        for (int year = 2015; year < CURRENT_YEAR; year++) {
             planUrlInfo.setYear(year);
-
-            System.out.println("search year:"+year+" planUrlInfo:"+planUrlInfo);
             yearJson = new PlanYearJson(year, getMajorJson(planUrlInfo));
             yearJsonList.add(yearJson);
         }
@@ -69,7 +68,7 @@ public class PlanUtil {
 
         List<PlanJson> planList = getPlanList(planUrlInfo);
         datajson.setData(planList);
-        if(planList==null){
+        if (planList == null) {
             System.out.println("planlist is null");
             System.exit(0);
         }
@@ -89,16 +88,16 @@ public class PlanUtil {
         List<PlanJson> planList = new ArrayList<>();
 
         Document doc = JsoupDoubleAntiCrawlerUtil.gethtml(UrlUtil.combinPlanURL(planUrlInfo));
-        System.out.println("getPlanList_url:"+UrlUtil.combinPlanURL(planUrlInfo));
-        //1.判断有没有 a.text
-        //1.1 存在,获取完成之后,p加一,获取doc.select,
         while (true) {
 
             //数据预处理
             Elements planEles = doc.select("div.sco_list tr");//具体数据
             planEles.remove(planEles.first());//去表头
             if (planEles.first().select("td").text()
-                    .equals("未找到符合条件的数据，可能是该校在该省无招生或数据录入中")) return null;
+                    .equals("未找到符合条件的数据，可能是该校在该省无招生或数据录入中")){
+                System.out.println("未找到符合条件的数据，可能是该校在该省无招生或数据录入中");
+                break;
+            }
             //数据获取
             planList.addAll(getPlanJson(planEles));//获取数据
             //判断当前页面是否有a.next,没有就break;,有,就p+=1, 重新请求结果.
@@ -121,14 +120,13 @@ public class PlanUtil {
         for (Element planEleAttr : planEles) {
             planTdEle = planEleAttr.select("td");
             planJson = new PlanJson();
-            planJson.setMajor_name(planTdEle.get(0).ownText());
+            planJson.setMajor_name(JsonStrUtil.replaceSpcialChar(planTdEle.get(0).ownText()));
             planJson.setPlan_type(planTdEle.get(1).ownText());
             planJson.setCollege_system(planTdEle.get(2).ownText());
             planJson.setBatch(planTdEle.get(3).ownText());
             numberTemp = planTdEle.get(4).ownText();
-            planJson.setPlan_count(Integer.parseInt(numberTemp.equals("--")?"0":numberTemp));
-            numberTemp = planTdEle.get(5).ownText();
-            planJson.setCost(Double.parseDouble(numberTemp.equals("--")?"0.0":numberTemp));
+            planJson.setPlan_count(Integer.parseInt(numberTemp.equals("--") ? "0" : numberTemp));
+            planJson.setCost(planTdEle.get(5).ownText());
             planJsonList.add(planJson);
         }
         return planJsonList;
@@ -153,9 +151,16 @@ public class PlanUtil {
         System.out.println(getMajorJson(new PlanUrlInfo()));
     }
 
-    @Test
-    public void testGetUsedPlan(){
+
+    public void testGetUsedPlan() {
         System.out.println(getUsedPlan(new PlanUrlInfo()));
+    }
+
+    @Test
+    public void testdataJson(){
+        DataJson dataJson = new DataJson<PlanJson>();
+        dataJson.setData(new ArrayList());
+        System.out.println(dataJson);
     }
 
 

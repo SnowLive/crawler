@@ -22,6 +22,8 @@ public interface SchoolMajorBiz {
     //获取页面
     String getPage(String url);
 
+    int updateSchoolId();
+
 
 
 }

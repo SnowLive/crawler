@@ -20,7 +20,7 @@ public class PlanJson {
     private String plan_type;//计划类型
     private String college_system;//大学学制
     private int plan_count = 0;//招生人数
-    private double cost = 0.0d;//学费
+    private String cost ;//学费
     private String batch ;//批次
 
     @Override
@@ -29,7 +29,7 @@ public class PlanJson {
                 ", \"plan_type\":\"" + plan_type + '\"' +
                 ", \"college_system\":\"" + college_system + '\"' +
                 ", \"plan_count\":" + plan_count +
-                ", \"cost\":" + cost +
+                ", \"cost\":\"" + cost + '\"' +
                 ", \"batch\":\"" + batch + '\"' +
                 '}';
     }

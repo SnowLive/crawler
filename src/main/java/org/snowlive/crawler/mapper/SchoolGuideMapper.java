@@ -9,5 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface SchoolGuideMapper {
 
     int insert(SchoolGuide record);
+    int update(SchoolGuide record);
     int deleteAll();
 }

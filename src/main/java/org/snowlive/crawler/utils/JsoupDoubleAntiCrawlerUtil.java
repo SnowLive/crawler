@@ -42,7 +42,7 @@ public class JsoupDoubleAntiCrawlerUtil {
         } catch (Exception e) {
             System.out.println("发送请求失败:" + e.getMessage());
         }
-        System.out.println(result.substring(0, 10));
+        System.out.println("jdac:"+result.substring(0, 2));
         return Jsoup.parse(result);
     }
 

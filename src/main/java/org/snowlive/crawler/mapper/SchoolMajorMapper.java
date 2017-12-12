@@ -9,4 +9,8 @@ import org.springframework.stereotype.Repository;
 public interface SchoolMajorMapper {
 
     int insert(SchoolMajor record);
+
+    int deleteAll();
+
+    int update(SchoolMajor record);
 }

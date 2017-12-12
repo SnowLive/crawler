@@ -8,25 +8,22 @@ import java.sql.Timestamp;
 
 /**
  * Class For:
- * 学校招生计划
+ * 自助招生
  *
  * @auther: 尹振坤
- * @date: 17-12-9
+ * @date: 17-12-11
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SchoolPlan {
+public class SchoolIndependent {
     private Integer id;
     private String schoolId;
-
-    private String schoolPlanId;
-
-    private String type = "ESI";
-    private String year = "2017";
-    private String plan;
-    private String usedPlan;
+    private String schoolIndependentId;
+    private String independent;//text
+    private String info = "{}";//json 附加信息
     private int state = 1;
     private Timestamp createTime;
     private Timestamp updateTime;
+
 }

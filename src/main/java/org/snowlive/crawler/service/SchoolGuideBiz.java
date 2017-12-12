@@ -15,4 +15,8 @@ public interface SchoolGuideBiz {
      * @return
      */
     int saveSchoolGuide();
+
+    int deleteAll();
+
+    int updateSchoolId();
 }

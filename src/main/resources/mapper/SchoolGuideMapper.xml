@@ -9,5 +9,9 @@
     <delete id="deleteAll" >
         DELETE  FROM school_guide
     </delete>
+    
+    <update id="update">
+        UPDATE school_guide set school_id = #{schoolId} where id = #{id}
+    </update>
 </mapper>
 

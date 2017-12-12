@@ -29,6 +29,10 @@ public class UrlUtil {
                 "&type=" + urlInfo.getType() + "&year=" + urlInfo.getYear()+"&p="+urlInfo.getP();
     }
 
+    public static String combinIndependentURL(int urlInfo){
+        return "http://www.gaokaoq.com/college/zzzs/id/"+urlInfo+".html";
+    }
+
     @Test
     public void testURL(){
         System.out.println(UrlUtil.combinPlanURL(1,1,1,1,1));

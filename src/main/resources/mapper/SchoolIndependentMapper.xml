@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.snowlive.crawler.mapper.SchoolIndependentMapper">
+
+    <insert id="insert" parameterType="org.snowlive.crawler.entity.SchoolIndependent">
+        INSERT INTO school_independent (id, school_id, school_independent_id, independent, info, state, create_time, update_time)
+        VALUES (#{id}, #{schoolId}, #{schoolIndependentId}, #{independent}, #{info}, #{state}, NOW(), NOW())
+    </insert>
+    <delete id="deleteAll">
+        DELETE FROM school_independent
+    </delete>
+    <delete id="deleteFrom">
+        DELETE FROM school_independent
+        LIMIT #{from}, #{to}
+    </delete>
+
+    <select id="findAll">
+        SELECT * from school_independent
+    </select>
+</mapper>
+

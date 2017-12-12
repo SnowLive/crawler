@@ -3,7 +3,19 @@
 <mapper namespace="org.snowlive.crawler.mapper.SchoolMajorMapper">
 
     <insert id="insert" parameterType="org.snowlive.crawler.entity.SchoolMajor">
-        INSERT INTO school_major (id, school_id,school_major_id,type, year, focus_major, special_major,lab_major,course_major,info,state,create_time,update_time)
-        VALUES (#{id}, #{schoolId},#{schoolMajorId},#{type},#{year}, #{focusMajor},#{specialMajor},#{labMajor},#{courseMajor},#{info},#{state},NOW(),NOW())
+        INSERT INTO school_major (id, school_id, school_major_id, type, year, focus_major, special_major, lab_major, course_major, info, state, create_time, update_time)
+        VALUES (#{id}, #{schoolId}, #{schoolMajorId}, #{type}, #{year}, #{focusMajor}, #{specialMajor}, #{labMajor},
+                       #{courseMajor}, #{info}, #{state}, NOW(), NOW())
     </insert>
+
+    <delete id="deleteAll">
+        DELETE FROM school_major
+    </delete>
+
+    <update id="update">
+        UPDATE school_major
+        SET school_id = #{schoolId} AND update_time = NOW()
+        WHERE id = #{id}
+    </update>
+
 </mapper>

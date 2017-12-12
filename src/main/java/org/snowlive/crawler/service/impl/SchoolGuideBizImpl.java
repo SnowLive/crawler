@@ -5,6 +5,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.snowlive.crawler.entity.SchoolGuide;
 import org.snowlive.crawler.mapper.SchoolGuideMapper;
+import org.snowlive.crawler.mapper.SchoolInfoMapper;
 import org.snowlive.crawler.pojo.DataJson;
 import org.snowlive.crawler.pojo.UsedGuide;
 import org.snowlive.crawler.service.SchoolGuideBiz;
@@ -36,17 +37,21 @@ public class SchoolGuideBizImpl implements SchoolGuideBiz {
     @Autowired
     private SchoolGuideMapper schoolGuideMapper;
 
+    @Autowired
+    private SchoolInfoMapper schoolInfoMapper;
+
+    /**
+     * jdac:<!
+     * jdac:<!
+     * jdac:<!
+     * i:570 index:571 count:571
+     */
+
     @Override
     public int saveSchoolGuide() {
-        //todo attention delete
-//        System.out.println("已删除数据条数:" + schoolGuideMapper.deleteAll());
         String url;
         int index;
-//        for (int i = 0; i < 3500; i++) {
-//        i:733 index:734 count:23
-        for (int i = 734; i < 3500; i++) {
-//        for (int i = 1383; i < 3500; i++) {
-
+        for (int i = 953; i < 3500; i++) {
             index = i + 1;
             url = "http://www.gaokaoq.com/college/guide/id/" + index + ".html";
             Document doc = JsoupDoubleAntiCrawlerUtil.gethtml(url);
@@ -55,6 +60,26 @@ public class SchoolGuideBizImpl implements SchoolGuideBiz {
         }
         return count;
     }
+
+    @Override
+    public int deleteAll() {
+        return schoolGuideMapper.deleteAll();
+    }
+
+    @Override
+    public int updateSchoolId() {
+        SchoolGuide schoolGuide = new SchoolGuide();
+        for (int i = 1; i < 3500; i++) {
+            schoolGuide = new SchoolGuide();
+            schoolGuide.setId(i);
+            if (schoolInfoMapper.findSchoolIdById(i) == null) continue;
+            schoolGuide.setSchoolId(schoolInfoMapper.findSchoolIdById(i));
+            System.out.println("count:"+count);
+            count += schoolGuideMapper.update(schoolGuide);
+        }
+        return count;
+    }
+
 
     /**
      * 数据处理.
@@ -66,7 +91,7 @@ public class SchoolGuideBizImpl implements SchoolGuideBiz {
         //1.创建整体对象,分别讲可以直接封装的数据进行封装.
         SchoolGuide schoolGuide = new SchoolGuide();
         schoolGuide.setId(index);
-        schoolGuide.setSchoolId(String.valueOf(index));
+        schoolGuide.setSchoolId(schoolInfoMapper.findSchoolIdById(index));
         schoolGuide.setSchoolGuideId(UUIDFactory.getUUID());
         // 仍需设置 title,content,usedGuide,publishTime
         /**

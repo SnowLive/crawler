@@ -6,6 +6,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.snowlive.crawler.entity.SchoolMajor;
+import org.snowlive.crawler.mapper.SchoolInfoMapper;
 import org.snowlive.crawler.mapper.SchoolMajorMapper;
 import org.snowlive.crawler.service.SchoolMajorBiz;
 import org.snowlive.crawler.utils.SchoolMajorDownLoadUtil;
@@ -31,6 +32,9 @@ public class SchoolMajorBizImpl implements SchoolMajorBiz {
     @Autowired
     private SchoolMajorMapper schoolMajorMapper;
 
+    @Autowired
+    private SchoolInfoMapper  schoolInfoMapper;
+
     @Override
     public String getPage(String url) {
         String ip = "";
@@ -50,6 +54,20 @@ public class SchoolMajorBizImpl implements SchoolMajorBiz {
         }
         return html;
 
+    }
+
+    @Override
+    public int updateSchoolId() {
+        SchoolMajor schoolMajor = new SchoolMajor();
+        for (int i = 1; i < 3377; i++) {
+            schoolMajor = new SchoolMajor();
+            schoolMajor.setId(i);
+            if (schoolInfoMapper.findSchoolIdById(i) == null) continue;
+            schoolMajor.setSchoolId(schoolInfoMapper.findSchoolIdById(i));
+            System.out.println("count:"+count);
+            count += schoolMajorMapper.update(schoolMajor);
+        }
+        return count;
     }
 
     @Override
@@ -110,7 +128,7 @@ public class SchoolMajorBizImpl implements SchoolMajorBiz {
         // 创建学校对象
         SchoolMajor schoolMajor = new SchoolMajor();
         schoolMajor.setId(schoolId);
-        schoolMajor.setSchoolId(String.valueOf(schoolId));
+        schoolMajor.setSchoolId(schoolInfoMapper.findSchoolIdById(schoolId));
         schoolMajor.setSchoolMajorId(UUIDFactory.getUUID());
         schoolMajor.setSchoolName(schoolName.ownText());
         schoolMajor.setFocusMajor(majors[0]);

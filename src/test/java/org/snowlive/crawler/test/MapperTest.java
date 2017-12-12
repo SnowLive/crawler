@@ -5,11 +5,9 @@ import org.junit.runner.RunWith;
 import org.snowlive.crawler.entity.SchoolGuide;
 import org.snowlive.crawler.entity.SchoolMajor;
 import org.snowlive.crawler.entity.SchoolPlan;
-import org.snowlive.crawler.mapper.SchoolGuideMapper;
-import org.snowlive.crawler.mapper.SchoolMajorMapper;
-import org.snowlive.crawler.mapper.SchoolPlanMapper;
-import org.snowlive.crawler.mapper.TestJsonMapper;
+import org.snowlive.crawler.mapper.*;
 import org.snowlive.crawler.pojo.*;
+import org.snowlive.crawler.utils.PlanUtil;
 import org.snowlive.crawler.utils.UUIDFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -39,17 +37,19 @@ public class MapperTest {
     private SchoolPlanMapper schoolPlanMapper;
 
     @Autowired
-    private TestJsonMapper testJsonMapper;
+    private SchoolIndependentMapper schoolIndependentMapper;
+
+    @Autowired
+    private SchoolInfoMapper schoolInfoMapper;
 
 
-    @Test
     public void testSchoolPlanMapper() {
 
         schoolPlanMapper.deleteAll();
 
         SchoolPlan schoolPlan = new SchoolPlan();
         schoolPlan.setId(1);
-        schoolPlan.setSchoolId(1);
+        schoolPlan.setSchoolId(schoolInfoMapper.findSchoolIdById(1));
         schoolPlan.setSchoolPlanId(UUIDFactory.getUUID());
 
         //datajson->yearjson->major->datajson->planjson
@@ -95,6 +95,20 @@ public class MapperTest {
     }
 
 
+    public void testSchoolPlanMapperInsert(){
+        schoolPlanMapper.deleteAll();
+        SchoolPlan plan = new SchoolPlan();
+        plan.setId(1);
+        plan.setSchoolId(schoolInfoMapper.findSchoolIdById(1));
+        plan.setSchoolPlanId(UUIDFactory.getUUID());
+        plan.setUsedPlan(PlanUtil.getUsedPlan(new PlanUrlInfo()).toString());
+        plan.setPlan(PlanUtil.getMajorJson(new PlanUrlInfo()).toString());
+        System.out.println("共添加数据:"+schoolPlanMapper.insert(plan));
+
+
+    }
+
+
     public void testSchoolMajorMapper() {
         SchoolMajor major = new SchoolMajor(1, "schoolid", "snowlive",
                 "snowlive", "snowlive", "snowlive", "snowlive", "snowlive",
@@ -130,26 +144,21 @@ public class MapperTest {
         ;
     }
 
-    public void testJson() {
-        //创建dataJson 存储usedGuide;
-        DataJson<UsedGuide> dataJson = new DataJson<UsedGuide>();
-        List<UsedGuide> usedGuideList = new ArrayList<UsedGuide>(8);
-        usedGuideList.add(new UsedGuide("snowlive", "snowlive", Timestamp.valueOf("2017-10-10 12:12:12")));
-        dataJson.setData(usedGuideList);
-        dataJson.setCount(usedGuideList.size());
+    @Test
+    public void testSchoolIndependentMapper() {
+        System.out.println("total delete num:" + schoolIndependentMapper.deleteAll());
+//        SchoolIndependent schoolIndependent = new SchoolIndependent();
+//        schoolIndependent.setId(1);
+//        schoolIndependent.setSchoolId(schoolInfoMapper.findSchoolIdById(1));
+//        schoolIndependent.setSchoolIndependentId(UUIDFactory.getUUID());
+//        schoolIndependent.setIndependent("自助招生");
+//        System.out.println("add num:"+schoolIndependentMapper.insert(schoolIndependent));
 
-        //核心添加数据区域.
-        SchoolGuide schoolGuide = new SchoolGuide();
-        schoolGuide.setId(2);
-        schoolGuide.setSchoolGuideId("1");
-        schoolGuide.setSchoolId("1");
-        schoolGuide.setTitle("snowlive");
-        schoolGuide.setContent("snowlive");
-        schoolGuide.setUsedGuide(dataJson.toString());
-
-        System.out.println(dataJson);
-        schoolGuide.setPublishTime(new Timestamp(System.currentTimeMillis()));
-
-        schoolGuideMapper.insert(schoolGuide);
     }
+
+
+    public void testSchoolInfoMapper(){
+        System.out.println(schoolInfoMapper.findSchoolIdById(12));
+    }
+
 }

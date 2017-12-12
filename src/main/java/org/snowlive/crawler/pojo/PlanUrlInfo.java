@@ -17,7 +17,7 @@ public class PlanUrlInfo {
 
     private int id = 1;
     private int city_id = 5;
-    private int type = 1;//文理
+    private int type = 1;//1:文理,2:理科
     private int year = 2017;
     private int p = 1;
     public PlanUrlInfo(int id){
