@@ -68,15 +68,25 @@ public class SchoolGuideBizImpl implements SchoolGuideBiz {
 
     @Override
     public int updateSchoolId() {
-        SchoolGuide schoolGuide = new SchoolGuide();
-        for (int i = 1; i < 3500; i++) {
-            schoolGuide = new SchoolGuide();
-            schoolGuide.setId(i);
-            if (schoolInfoMapper.findSchoolIdById(i) == null) continue;
-            schoolGuide.setSchoolId(schoolInfoMapper.findSchoolIdById(i));
-            System.out.println("count:"+count);
-            count += schoolGuideMapper.update(schoolGuide);
+        //1. for遍历 school_guide 拿到id
+        List<SchoolGuide> guideList = schoolGuideMapper.listGuide();
+        String url;
+        String school_name;
+        for (SchoolGuide entity : guideList) {
+            //1.1获取id拼成url
+            url = UrlUtil.combinGuideURL(entity.getId());
+            //1.2获取name
+            school_name = JsoupDoubleAntiCrawlerUtil.getContent(".e_name", url).replace("关注", "");
+            //1.3 schoolInfo.select 获取schoolid
+            entity.setSchoolId(schoolInfoMapper.findSchoolIdByName(school_name));
+            //1.4 更新数据,保存数据
+            count += schoolGuideMapper.updateById(entity);
+            System.out.println("entity:"+entity.getId()+":"+school_name);
         }
+        //2. 通过id拼接url
+
+        //3. 请求url,select name,
+        //4.schoolinfomapper.select
         return count;
     }
 

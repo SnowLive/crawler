@@ -27,6 +27,6 @@ public class SchoolInfo {
     private String map_url;
     private int state = 1;
     private Timestamp createTime;
-    private Timestamp update;
+    private Timestamp updateTime;
 
 }

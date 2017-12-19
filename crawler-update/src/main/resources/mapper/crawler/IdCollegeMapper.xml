@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.snowlive.crawler.update.mapper.crawler.IdCollegeCrawlerMapper">
+    <resultMap id="idCollegeResult" type="org.snowlive.crawler.update.entity.crawler.IdCollege">
+        <result property="id" column="id" javaType="Integer"/>
+        <result property="name" column="name" javaType="String"/>
+    </resultMap>
+
+    <select id="listAll" resultMap="idCollegeResult">
+        SELECT *
+        FROM schoolsort.id_college
+    </select>
+    <select id="select" resultMap="idCollegeResult">
+        SELECT * from schoolsort.id_college
+        <if test="name != null">where name = #{name}</if>
+    </select>
+    <select id="selectNameById" resultType="java.lang.String">
+        SELECT name
+        FROM schoolsort.id_college
+        WHERE id = #{id}
+    </select>
+    <insert id="insert">
+        INSERT INTO id_college VALUES (#{id}, #{name})
+    </insert>
+
+</mapper>

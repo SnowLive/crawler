@@ -54,8 +54,6 @@ public class JsoupDoubleAntiCrawlerUtil {
      * @return
      */
     public static String getContent(String selectMod, String url) {
-//        return gethtml(url).select(selectMod).text().replace("\\","\\\\").replace("\"","\\\"");
-//        return gethtml(url).select(selectMod).text();
         return JsonStrUtil.replaceSpcialChar(gethtml(url).select(selectMod).text());
     }
 

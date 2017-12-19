@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.snowlive.crawler.update.mapper.crawler.SchoolSortCrawlerMapper">
+    <resultMap id="schoolSortResult" type="org.snowlive.crawler.update.entity.crawler.SchoolSort">
+        <result property="collegeId" column="college_id" javaType="Integer"/>
+        <result property="subjectA" column="subject_a" javaType="Integer"/>
+        <result property="workRank" column="work_rank" javaType="Integer"/>
+    </resultMap>
+
+    <select id="countAll" resultType="Integer">
+        SELECT count(id)
+        FROM schoolsort.schoolsort
+    </select>
+    <select id="listAll" resultMap="schoolSortResult">
+        SELECT *
+        FROM schoolsort.schoolsort
+    </select>
+    <select id="select" resultMap="schoolSortResult">
+        SELECT * from schoolsort.schoolsort
+        <if test="name != null">where name = #{name}</if>
+    </select>
+
+</mapper>

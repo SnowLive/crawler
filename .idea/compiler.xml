@@ -7,10 +7,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="crawler-update" />
         <module name="crawlerproxy" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="crawler-update" target="1.8" />
       <module name="crawlerproxy" target="1.8" />
       <module name="snowlive-crawler" target="1.8" />
     </bytecodeTargetLevel>

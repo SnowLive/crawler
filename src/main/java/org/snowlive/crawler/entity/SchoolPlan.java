@@ -19,9 +19,7 @@ import java.sql.Timestamp;
 public class SchoolPlan {
     private Integer id;
     private String schoolId;
-
     private String schoolPlanId;
-
     private String type = "ESI";
     private String year = "2017";
     private String plan;

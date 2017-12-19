@@ -1,17 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.snowlive.crawler.mapper.SchoolGuideMapper">
+    <resultMap id="resultGuide" type="org.snowlive.crawler.entity.SchoolGuide">
+        <result property="schoolId" column="school_id" javaType="java.lang.String" />
+        <result property="schoolGuideId" column="school_guide_id" javaType="java.lang.String" />
+        <result property="usedGuide" column="used_guide" javaType="java.lang.String" />
+        <result property="publishTime" column="publish_time" javaType="java.lang.String" />
+        <result property="createTime" column="create_time" javaType="java.sql.Timestamp" />
+        <result property="updateTime" column="update_time" javaType="java.sql.Timestamp" />
+    </resultMap>
 
-    <insert id="insert" parameterType="org.snowlive.crawler.entity.SchoolGuide">
-        INSERT INTO school_guide (id,school_id,school_guide_id,title,content,type,year,used_guide,state,publish_time,create_time,update_time)
-        VALUES (#{id}, #{schoolId}, #{schoolGuideId},#{title},#{content}, #{type}, #{year},#{usedGuide},#{state},#{publishTime}, NOW(), NOW())
-    </insert>
-    <delete id="deleteAll" >
-        DELETE  FROM school_guide
-    </delete>
+    <select id="listGuide" resultMap="resultGuide">
+      select * from gaokao.school_guide
+    </select>
     
+    <insert id="insert" parameterType="org.snowlive.crawler.entity.SchoolGuide">
+        INSERT INTO school_guide (id, school_id, school_guide_id, title, content, type, year, used_guide, state, publish_time, create_time, update_time)
+        VALUES (#{id}, #{schoolId}, #{schoolGuideId}, #{title}, #{content}, #{type}, #{year}, #{usedGuide}, #{state},
+                       #{publishTime}, NOW(), NOW())
+    </insert>
+    <delete id="deleteAll">
+        DELETE FROM school_guide
+    </delete>
     <update id="update">
-        UPDATE school_guide set school_id = #{schoolId} where id = #{id}
+        UPDATE school_guide
+        SET school_id = #{schoolId}
+        WHERE school_name = #{schoolName}
+    </update>
+    <update id="updateById">
+        UPDATE school_guide
+        SET school_id = #{schoolId}
+        WHERE id = #{id}
     </update>
 </mapper>
 

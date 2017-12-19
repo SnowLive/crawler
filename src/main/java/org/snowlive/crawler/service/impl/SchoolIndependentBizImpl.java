@@ -30,21 +30,24 @@ public class SchoolIndependentBizImpl implements SchoolIndependentBiz {
 
     private int count = 0;
     //    i:736 index:737 count:737
-    private int id = 738;
+    private int id = 1;
 
 
     @Override
     public int insertIndependent() {
+        handlerInfo(0,3410);
+        return count;
+    }
 
+    private void handlerInfo(int start,int end) {
         String url;
         int index;
-        for (int i = 737; i < 3500; i++) {
+        for (int i = start; i < end; i++) {
             index = i + 1;
             url = UrlUtil.combinIndependentURL(index);
             handlerDoc(JsoupDoubleAntiCrawlerUtil.gethtml(url), index);
             System.out.println("i:" + i + " index:" + index + " count:" + count);
         }
-        return count;
     }
 
 
@@ -61,15 +64,21 @@ public class SchoolIndependentBizImpl implements SchoolIndependentBiz {
      */
     private void handlerDoc(Document doc, int index) {
         //1.跳转到其他页面了,则select('div.the_eva').isempty,return;
+        String schoolName = doc.select(".e_name").text().replace("关注", "");
+        System.out.println("schoolName:"+schoolName);
+        String schoolId = schoolInfoMapper.findSchoolIdByName(schoolName);
+        System.out.println(schoolId);
+
         Elements info = doc.select("div.the_eva");
+
         if (info.isEmpty()) return;
         SchoolIndependent schoolIndependent = new SchoolIndependent();
+
         schoolIndependent.setId(id);
-        String schoolId = schoolInfoMapper.findSchoolIdById(index);
-        schoolId = schoolId==null?String.valueOf(index):schoolId;
         schoolIndependent.setSchoolId(schoolId);
         schoolIndependent.setSchoolIndependentId(UUIDFactory.getUUID());
-        schoolIndependent.setIndependent(info.text());
+
+        schoolIndependent.setIndependent(info.toString());
         count += schoolIndependentMapper.insert(schoolIndependent);
         id += 1;
     }

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.snowlive.crawler.update.mapper.master.SchoolSortMasterMapper">
+
+    <resultMap id="schoolSortResult" type="org.snowlive.crawler.update.entity.master.SchoolSort">
+        <result property="schoolId" column="school_id" javaType="String"/>
+        <result property="schoolSortId" column="school_sort_id" javaType="String"/>
+        <result property="schoolName" column="school_name" javaType="String"/>
+        <result property="worldRank" column="world_rank" javaType="Integer"/>
+        <result property="topSubjectNum" column="top_subject_num" javaType="Integer"/>
+        <result property="sciNum" column="sci_num" javaType="Integer"/>
+        <result property="createTime" column="create_time" javaType="java.sql.Timestamp"/>
+        <result property="updateTime" column="update_time" javaType="java.sql.Timestamp"/>
+    </resultMap>
+
+    <select id="listAll" resultMap="schoolSortResult">
+        SELECT *
+        FROM gaokao.school_sort
+    </select>
+
+    <select id="countAll" resultType="Integer">
+        SELECT count(id)
+        FROM gaokao.school_sort
+    </select>
+
+    <select id="select" resultMap="schoolSortResult">
+        SELECT * from gaokao.school_sort
+        <if test="schoolName !=null">
+            where school_name=#{schoolName}
+        </if>
+    </select>
+
+    <update id="update">
+        UPDATE gaokao.school_sort
+        SET school_id = #{schoolId}, update_time = NOW()
+        WHERE school_name = #{schoolName}
+    </update>
+
+    <insert id="insert">
+        INSERT INTO gaokao.school_sort (id, school_id, school_sort_id, school_name,
+                                        type, year, rank, world_rank,
+                                        city, top_subject_num, sci_num, info,
+                                        state, create_time, update_time)
+        VALUES (#{id}, #{schoolId}, #{schoolSortId}, #{schoolName},
+                       #{type}, #{year}, #{rank}, #{worldRank},
+                       #{city}, #{topSubjectNum}, #{sciNum}, #{info},
+                #{state}, NOW(), NOW())
+    </insert>
+
+</mapper>

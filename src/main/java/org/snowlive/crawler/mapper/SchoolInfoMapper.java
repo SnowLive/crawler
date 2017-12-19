@@ -22,4 +22,11 @@ public interface SchoolInfoMapper {
 
     String findSchoolIdById(@Param("id")Integer id);
 
+    String findSchoolIdByName(@Param("name")String name);
+
+    List<SchoolInfo> select(SchoolInfo entity);
+
+
+
+
 }

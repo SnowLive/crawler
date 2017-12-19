@@ -1,13 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.snowlive.crawler.mapper.SchoolInfoMapper">
+    <resultMap id="resultSchoolInfo" type="org.snowlive.crawler.entity.SchoolInfo">
+        <id property="id" column="id" javaType="Integer"/>
+        <result property="schoolId" column="school_id" javaType="String"/>
+        <result property="schoolName" column="school_Name" javaType="String"/>
+        <result property="province" column="province" javaType="String"/>
+        <result property="info" column="info" javaType="String"/>
+        <result property="synopsis" column="synopsis" javaType="String"/>
+        <result property="map_url" column="map_url" javaType="String"/>
+        <result property="state" column="state" javaType="Integer"/>
+        <result property="createTime" column="create_time" javaType="java.sql.Timestamp"/>
+        <result property="updateTime" column="update_time" javaType="java.sql.Timestamp"/>
+    </resultMap>
 
-
-    <select id="findAll" >
-        SELECT * from school
+    <select id="findAll" resultMap="resultSchoolInfo">
+        SELECT *
+        FROM school
     </select>
     <select id="findSchoolIdById" resultType="java.lang.String">
-        SELECT school_id from school where id = #{id}
+        SELECT school_id
+        FROM school
+        WHERE id = #{id}
+    </select>
+    <select id="findSchoolIdByName" resultType="java.lang.String">
+        SELECT school_id
+        FROM school
+        WHERE school_name = #{name}
+    </select>
+    <select id="select" resultMap="resultSchoolInfo">
+        SELECT *
+        FROM school
+        WHERE 1=1
+        <if test="schoolId!=null">and school_id= #{schoolId}</if>
+        <if test="schoolName!=null">and school_name= #{schoolName}</if>
     </select>
 </mapper>
 

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.snowlive.crawler.update.mapper.master.SchoolMajorMapper">
+
+    <resultMap id="schoolMajorResult" type="org.snowlive.crawler.update.entity.master.SchoolMajor">
+        <result property="schoolId" column="school_id" javaType="java.lang.String"/>
+        <result property="schoolMajorId" column="school_major_id" javaType="java.lang.String"/>
+        <result property="focusMajor" column="focus_major" javaType="java.lang.String"/>
+        <result property="specialMajor" column="special_major" javaType="java.lang.String"/>
+        <result property="labMajor" column="lab_major" javaType="java.lang.String"/>
+        <result property="courseMajor" column="course_major" javaType="java.lang.String"/>
+        <result property="createTime" column="create_time" javaType="java.sql.Timestamp"/>
+        <result property="updateTime" column="update_time" javaType="java.sql.Timestamp"/>
+    </resultMap>
+
+
+    <insert id="insert" parameterType="org.snowlive.crawler.update.entity.master.SchoolMajor">
+        INSERT INTO gaokao.school_major (id, school_id, school_major_id, type, year, focus_major, special_major, lab_major, course_major, info, state, create_time, update_time)
+        VALUES (#{id}, #{schoolId}, #{schoolMajorId}, #{type}, #{year}, #{focusMajor}, #{specialMajor}, #{labMajor},
+                       #{courseMajor}, #{info}, #{state}, NOW(), NOW())
+    </insert>
+
+    <delete id="deleteAll">
+        DELETE FROM gaokao.school_major
+    </delete>
+
+    <update id="updateSchoolId">
+        UPDATE gaokao.school_major
+        SET update_time = NOW()
+        <if test="schoolId !=null">,school_id = #{schoolId}</if>
+        WHERE id = #{id}
+    </update>
+
+    <select id="listAll" resultMap="schoolMajorResult">
+        SELECT *
+        FROM gaokao.school_major
+    </select>
+
+</mapper>
